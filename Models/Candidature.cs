@@ -29,13 +29,23 @@ public partial class Candidature
 
     public int? AdministrateurId { get; set; }
 
-    public int? AgentId { get; set; }
-
     public string? CommentaireFormation { get; set; }
 
     public string? StatutFormation { get; set; }
 
     public DateTime? DateModification { get; set; }
+
+    public string? RecapUser { get; set; }
+
+    public string? StatusGlobal { get; set; }
+
+    public string? StatusAgent { get; set; }
+
+    public int? AgentId { get; set; }
+
+    public virtual Administrateur? Administrateur { get; set; }
+
+    public virtual Agent? Agent { get; set; }
 
     public virtual Candidat? Candidats { get; set; }
 

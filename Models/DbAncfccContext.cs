@@ -15,6 +15,10 @@ public partial class DbAncfccContext : DbContext
     {
     }
 
+    public virtual DbSet<Administrateur> Administrateurs { get; set; }
+
+    public virtual DbSet<Agent> Agents { get; set; }
+
     public virtual DbSet<Candidat> Candidats { get; set; }
 
     public virtual DbSet<Candidature> Candidatures { get; set; }
@@ -34,6 +38,48 @@ public partial class DbAncfccContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Administrateur>(entity =>
+        {
+            entity.HasKey(e => e.AdministrateurId).HasName("PK__Administ__5AAEDD3CEBBE43CC");
+
+            entity.ToTable("Administrateur");
+
+            entity.Property(e => e.AdministrateurId).ValueGeneratedNever();
+            entity.Property(e => e.Email)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.MotDePasse)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Nom)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Prenom)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<Agent>(entity =>
+        {
+            entity.HasKey(e => e.AgentId).HasName("PK__Agent__9AC3BFF1C2C7BF3A");
+
+            entity.ToTable("Agent");
+
+            entity.Property(e => e.AgentId).ValueGeneratedNever();
+            entity.Property(e => e.Email)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.MotDePasse)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Nom)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Prenom)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+        });
+
         modelBuilder.Entity<Candidat>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Candidat__3214EC07F3250E92");
@@ -88,27 +134,53 @@ public partial class DbAncfccContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Candidat__3214EC0725A922E0");
 
             entity.Property(e => e.CommentaireDoc)
-                .HasMaxLength(10)
-                .IsFixedLength();
+                .HasMaxLength(1000)
+                .IsUnicode(false);
             entity.Property(e => e.CommentaireExp)
-                .HasMaxLength(10)
-                .IsFixedLength();
-            entity.Property(e => e.CommentaireInfoPerso).HasColumnType("text");
+                .HasMaxLength(1000)
+                .IsUnicode(false);
+            entity.Property(e => e.CommentaireFormation)
+                .HasMaxLength(1000)
+                .IsUnicode(false);
+            entity.Property(e => e.CommentaireInfoPerso)
+                .HasMaxLength(1000)
+                .IsUnicode(false);
             entity.Property(e => e.DateModification).HasColumnType("datetime");
             entity.Property(e => e.DatePostulation).HasColumnType("date");
+            entity.Property(e => e.RecapUser)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("recapUser");
             entity.Property(e => e.Reference)
                 .HasMaxLength(50)
                 .IsUnicode(false);
-            entity.Property(e => e.StatutDoc)
-                .HasMaxLength(10)
-                .IsFixedLength();
-            entity.Property(e => e.StatutExp)
-                .HasMaxLength(10)
-                .IsFixedLength();
-            entity.Property(e => e.StatutFormation).HasMaxLength(50);
-            entity.Property(e => e.StatutInfoPerso)
-                .HasMaxLength(20)
+            entity.Property(e => e.StatusAgent)
+                .HasMaxLength(1000)
                 .IsUnicode(false);
+            entity.Property(e => e.StatusGlobal)
+                .HasMaxLength(1000)
+                .IsUnicode(false)
+                .HasColumnName("statusGlobal");
+            entity.Property(e => e.StatutDoc)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.StatutExp)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.StatutFormation)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.StatutInfoPerso)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.Administrateur).WithMany(p => p.Candidatures)
+                .HasForeignKey(d => d.AdministrateurId)
+                .HasConstraintName("FK_Candidatures_Administrateur");
+
+            entity.HasOne(d => d.Agent).WithMany(p => p.Candidatures)
+                .HasForeignKey(d => d.AgentId)
+                .HasConstraintName("FK_Candidatures_Agent");
 
             entity.HasOne(d => d.Candidats).WithMany(p => p.Candidatures)
                 .HasForeignKey(d => d.CandidatsId)
