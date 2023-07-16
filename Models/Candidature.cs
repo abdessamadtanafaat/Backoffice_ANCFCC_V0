@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backoffice_ANCFCC.Models;
 
@@ -56,4 +57,16 @@ public partial class Candidature
     public virtual ICollection<Document> Documents { get; set; } = new List<Document>();
 
     public virtual ICollection<Experience> Experiences { get; set; } = new List<Experience>();
+
+    //[NotMapped]
+    //public object? Telephone { get; internal set; }
+    //[NotMapped]
+
+    //public object? Email { get; internal set; }
+    //[NotMapped]
+
+    //public object? Prenom { get; internal set; }
+    //[NotMapped]
+
+    //public object? Nom { get; internal set; }
 }

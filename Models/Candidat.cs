@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backoffice_ANCFCC.Models;
 
@@ -50,4 +51,6 @@ public partial class Candidat
     public bool? AvoirQualiteComBattant { get; set; }
 
     public virtual ICollection<Candidature> Candidatures { get; set; } = new List<Candidature>();
+        
+
 }
