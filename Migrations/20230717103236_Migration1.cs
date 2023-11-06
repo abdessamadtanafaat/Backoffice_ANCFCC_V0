@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Backoffice_ANCFCC.Migrations
 {
     /// <inheritdoc />
-    public partial class MigrationReference : Migration
+    public partial class Migration1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -177,7 +177,7 @@ namespace Backoffice_ANCFCC.Migrations
                     Nom = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
                     Note = table.Column<double>(type: "float", nullable: true),
                     OptionDiplome = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
-                    Reference = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Reference = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

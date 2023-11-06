@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backoffice_ANCFCC.Models;
 
 public partial class Diplome
 {
-    internal object Diplomes;
-
     public int Id { get; set; }
 
     public int? Anne { get; set; }
@@ -28,6 +25,5 @@ public partial class Diplome
 
     public string? OptionDiplome { get; set; }
 
-    public virtual Candidature? Candidature { get; set; }    
-    public string Reference { get; internal set; }
+    public virtual Candidature? Candidature { get; set; }
 }

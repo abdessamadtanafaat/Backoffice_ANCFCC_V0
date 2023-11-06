@@ -4,6 +4,7 @@ using Backoffice_ANCFCC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backoffice_ANCFCC.Migrations
 {
     [DbContext(typeof(DbAncfccContext))]
-    partial class DbAncfccContextModelSnapshot : ModelSnapshot
+    [Migration("20230816085641_UpdateModelsForNewColumn")]
+    partial class UpdateModelsForNewColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,10 +28,7 @@ namespace Backoffice_ANCFCC.Migrations
             modelBuilder.Entity("Backoffice_ANCFCC.Models.Administrateur", b =>
                 {
                     b.Property<int>("AdministrateurId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdministrateurId"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -48,23 +48,11 @@ namespace Backoffice_ANCFCC.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<byte[]>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<byte[]>("PasswordSalt")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<string>("Prenom")
                         .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AdministrateurId")
                         .HasName("PK__Administ__5AAEDD3CEBBE43CC");
@@ -95,23 +83,11 @@ namespace Backoffice_ANCFCC.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<byte[]>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<byte[]>("PasswordSalt")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<string>("Prenom")
                         .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AgentId")
                         .HasName("PK__Agent__9AC3BFF1C2C7BF3A");

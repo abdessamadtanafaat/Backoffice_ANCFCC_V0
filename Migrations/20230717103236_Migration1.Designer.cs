@@ -4,6 +4,7 @@ using Backoffice_ANCFCC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backoffice_ANCFCC.Migrations
 {
     [DbContext(typeof(DbAncfccContext))]
-    partial class DbAncfccContextModelSnapshot : ModelSnapshot
+    [Migration("20230717103236_Migration1")]
+    partial class Migration1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,10 +28,7 @@ namespace Backoffice_ANCFCC.Migrations
             modelBuilder.Entity("Backoffice_ANCFCC.Models.Administrateur", b =>
                 {
                     b.Property<int>("AdministrateurId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdministrateurId"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -48,23 +48,11 @@ namespace Backoffice_ANCFCC.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<byte[]>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<byte[]>("PasswordSalt")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<string>("Prenom")
                         .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AdministrateurId")
                         .HasName("PK__Administ__5AAEDD3CEBBE43CC");
@@ -95,23 +83,11 @@ namespace Backoffice_ANCFCC.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<byte[]>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<byte[]>("PasswordSalt")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<string>("Prenom")
                         .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AgentId")
                         .HasName("PK__Agent__9AC3BFF1C2C7BF3A");
@@ -270,36 +246,47 @@ namespace Backoffice_ANCFCC.Migrations
                     b.Property<DateTime?>("DatePostulation")
                         .HasColumnType("date");
 
-                    b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("RecapUser")
+                        .HasMaxLength(1000)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(1000)")
+                        .HasColumnName("recapUser");
 
                     b.Property<string>("Reference")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int?>("StatusAgent")
-                        .HasColumnType("int");
+                    b.Property<string>("StatusAgent")
+                        .HasMaxLength(1000)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(1000)");
 
-                    b.Property<int?>("StatusGlobal")
-                        .HasColumnType("int")
+                    b.Property<string>("StatusGlobal")
+                        .HasMaxLength(1000)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(1000)")
                         .HasColumnName("statusGlobal");
 
-                    b.Property<int?>("StatutDoc")
-                        .HasColumnType("int");
+                    b.Property<string>("StatutDoc")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
 
-                    b.Property<int?>("StatutExp")
-                        .HasColumnType("int");
+                    b.Property<string>("StatutExp")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
 
-                    b.Property<int?>("StatutFormation")
-                        .HasColumnType("int");
+                    b.Property<string>("StatutFormation")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
 
-                    b.Property<int?>("StatutInfoPerso")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Verrouille")
-                        .HasColumnType("bit");
+                    b.Property<string>("StatutInfoPerso")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id")
                         .HasName("PK__Candidat__3214EC0725A922E0");
@@ -424,6 +411,9 @@ namespace Backoffice_ANCFCC.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Reference")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id")
                         .HasName("PK__Diplomes__3214EC071E66C4A7");

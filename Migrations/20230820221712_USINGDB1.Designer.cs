@@ -4,6 +4,7 @@ using Backoffice_ANCFCC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backoffice_ANCFCC.Migrations
 {
     [DbContext(typeof(DbAncfccContext))]
-    partial class DbAncfccContextModelSnapshot : ModelSnapshot
+    [Migration("20230820221712_USINGDB1")]
+    partial class USINGDB1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,10 +28,7 @@ namespace Backoffice_ANCFCC.Migrations
             modelBuilder.Entity("Backoffice_ANCFCC.Models.Administrateur", b =>
                 {
                     b.Property<int>("AdministrateurId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdministrateurId"));
 
                     b.Property<string>("Email")
                         .IsRequired()
