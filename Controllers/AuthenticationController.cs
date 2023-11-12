@@ -66,6 +66,7 @@ namespace Backoffice_ANCFCC.Controllers
                     _logger.LogInformation("User registered : sending the Registration Confirmation .");
                     return Ok(new { Message = "Registration successful. Please check your email for confirmation." });
                 }
+
                 _logger.LogError("User registration failed.");
                 return BadRequest(new { Message = registrationResult.ErrorRegistration });
             
@@ -196,11 +197,15 @@ namespace Backoffice_ANCFCC.Controllers
         [ProducesResponseType(typeof(string), 200)] // Response type for 200 OK
         [ProducesResponseType(typeof(string), 400)] // Response type for 400 Bad Request
         [ProducesResponseType(typeof(string), 500)] // Response type for 500 Internal Server Error
-        public async Task<IActionResult> ForgotPassword(string email)
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordModel model)
         {
             try
             {
-                var user = _authService.ForgotPassword(email);
+                if (model == null || string.IsNullOrWhiteSpace(model.Email))
+                {
+                    return BadRequest("Invalid request. Email is required"); 
+                }
+                var user = _authService.ForgotPassword(model.Email);
 
                 if (user.IsSuccess)
                 { 
